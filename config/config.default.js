@@ -34,6 +34,10 @@ module.exports = appInfo => {
     // 会将view文件夹下的.html的文件识别成 .ejs
     mapping: { '.html': 'ejs' }, // 会将.ejs的后缀改成.html的后缀
   };
+  // 配置jwt
+  config.jwt = {
+    secret: 'Nick',
+  };
 
   // 配置mysql
   exports.mysql = {
