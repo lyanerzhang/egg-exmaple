@@ -35,6 +35,19 @@ module.exports = appInfo => {
     mapping: { '.html': 'ejs' }, // 会将.ejs的后缀改成.html的后缀
   };
 
+  // 配置mysql
+  exports.mysql = {
+    client: {
+      host: '127.0.0.1',
+      port: '3306',
+      user: 'root',
+      password: '123456789',
+      database: 'ly_data',
+    },
+    app: true,
+    agent: false,
+  };
+
   return {
     ...config,
     ...userConfig,

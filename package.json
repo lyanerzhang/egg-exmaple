@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "egg": "^3",
+    "egg-mysql": "^4.0.0",
     "egg-scripts": "^2",
     "egg-view-ejs": "^3.0.0"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^5.62.0",
     "egg-bin": "^5",
     "egg-ci": "^2",
     "egg-mock": "^5",

@@ -16,19 +16,63 @@ class HomeController extends Controller {
   // 获取用户信息
   async user() {
     const { ctx } = this;
-    const { name, slogen } = await ctx.service.home.user();
-    ctx.body = {
-      name,
-      slogen,
-    };
+    const result = await ctx.service.home.user();
+    ctx.body = result;
   }
   // 添加用户信息
-  async add() {
+  async addUser() {
     const { ctx } = this;
-    const { title } = ctx.request.body;
-    ctx.body = {
-      title,
-    };
+    const { username, password, signature } = ctx.request.body;
+    try {
+      const result = await ctx.service.home.addUser(username, password, signature);
+      ctx.body = {
+        code: 200,
+        msg: '添加成功',
+        data: null,
+      };
+    } catch (error) {
+      ctx.body = {
+        code: 500,
+        msg: '添加失败',
+        data: null,
+      };
+    }
+  }
+  async editUser() {
+    const { ctx } = this;
+    const { id, username, password, signature } = ctx.request.body;
+    try {
+      const result = await ctx.service.home.editUser(id, username, password, signature);
+      ctx.body = {
+        code: 200,
+        msg: '编辑成功',
+        data: null,
+      };
+    } catch (error) {
+      ctx.body = {
+        code: 500,
+        msg: '编辑失败',
+        data: null,
+      };
+    }
+  }
+  async deleteUser() {
+    const { ctx } = this;
+    const { id } = ctx.request.body;
+    try {
+      const result = ctx.service.home.deleteUser(id);
+      ctx.body = {
+        code: 200,
+        msg: '删除成功',
+        data: null,
+      };
+    } catch (error) {
+      ctx.body = {
+        code: 500,
+        msg: '删除失败',
+        data: null,
+      };
+    }
   }
 }
 
