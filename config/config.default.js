@@ -21,6 +21,7 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    uploadDir: 'app/public/upload',
   };
   config.security = {
     csrf: {
@@ -37,6 +38,18 @@ module.exports = appInfo => {
   // 配置jwt
   config.jwt = {
     secret: 'Nick',
+  };
+
+  config.multipart = {
+    mode: 'file',
+    fileSize: '10mb',
+  };
+
+  // 允许跨域
+  config.cors = {
+    origin: '*',
+    credentials: true, // 允许cookie跨域
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
   // 配置mysql

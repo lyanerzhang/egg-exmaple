@@ -20,6 +20,20 @@ class UserService extends Service {
       return null;
     }
   }
+  // 编辑用户信息
+  async editUserInfo(params) {
+    const { app } = this;
+    try {
+      const result = await app.mysql.update('user', {
+        ...params,
+      }, {
+        id: params.id, // 筛选出 id 等于 params.id 的用户
+      });
+      return result;
+    } catch (error) {
+      return null;
+    }
+  }
 }
 
 module.exports = UserService;
