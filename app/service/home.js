@@ -1,7 +1,7 @@
 const Service = require('egg').Service;
 class HomeService extends Service {
   async user() {
-    const { ctx, app } = this;
+    const { app } = this;
     const QUERY_STR = 'id, username';
     const sql = `select ${QUERY_STR} from user`;
     try {
@@ -12,7 +12,7 @@ class HomeService extends Service {
     }
   }
   async addUser(username, password, signature) {
-    const { ctx, app } = this;
+    const { app } = this;
     try {
       // 新增一条
       const result = await app.mysql.insert('user', {
@@ -27,7 +27,7 @@ class HomeService extends Service {
   }
   // 编辑接口
   async editUser(id, username, password, signature) {
-    const { ctx, app } = this;
+    const { app } = this;
     try {
       const result = await app.mysql.update('user', { username, password, signature }, {
         where: {
@@ -41,7 +41,7 @@ class HomeService extends Service {
   }
   // 删除接口
   async deleteUser(id) {
-    const { ctx, app } = this;
+    const { app } = this;
     try {
       const result = await app.mysql.delete('user', { id });
       return result;

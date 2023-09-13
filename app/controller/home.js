@@ -24,7 +24,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     const { username, password, signature } = ctx.request.body;
     try {
-      const result = await ctx.service.home.addUser(username, password, signature);
+      await ctx.service.home.addUser(username, password, signature);
       ctx.body = {
         code: 200,
         msg: '添加成功',
@@ -42,7 +42,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     const { id, username, password, signature } = ctx.request.body;
     try {
-      const result = await ctx.service.home.editUser(id, username, password, signature);
+      await ctx.service.home.editUser(id, username, password, signature);
       ctx.body = {
         code: 200,
         msg: '编辑成功',
@@ -61,6 +61,7 @@ class HomeController extends Controller {
     const { id } = ctx.request.body;
     try {
       const result = ctx.service.home.deleteUser(id);
+      console.log(result);
       ctx.body = {
         code: 200,
         msg: '删除成功',
