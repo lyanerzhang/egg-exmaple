@@ -60,6 +60,18 @@ class BillService extends Service {
       return null;
     }
   }
+  async types() {
+    const { app } = this;
+    try {
+      const QUERY_STR = 'id, name, type, user_id';
+      const sql = `select ${QUERY_STR} from type`;
+      const result = await app.mysql.query(sql);
+      return result;
+    } catch (error) {
+      console.log('err', error);
+      return null;
+    }
+  }
 }
 
 module.exports = BillService;

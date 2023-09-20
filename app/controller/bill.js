@@ -303,6 +303,28 @@ class BillController extends Controller {
       };
     }
   }
+  // 获取账单类型
+  async types() {
+    const { ctx, app } = this;
+    const token = ctx.request.header.authorization;
+    const decode = await app.jwt.verify(token, app.config.jwt.secret);
+    if (!decode) return;
+    try {
+      const result = await ctx.service.bill.types();
+      ctx.body = {
+        code: 200,
+        msg: '请求成功',
+        data: result,
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.body = {
+        code: 500,
+        msg: '系统错误',
+        data: null,
+      };
+    }
+  }
 }
 
 module.exports = BillController;
