@@ -95,7 +95,7 @@ class BillController extends Controller {
       const __list = list.filter(item => moment(Number(item.date)).format('YYYY-MM') === date);
       // 当月总支出
       const totalExpense = __list.reduce((curr, item) => {
-        if (item.pay_type === 1) {
+        if (Number(item.pay_type) === 1) {
           curr += Number(item.amount);
           return curr;
         }
@@ -103,7 +103,7 @@ class BillController extends Controller {
       }, 0);
       // 累计总收入
       const totalIncome = __list.reduce((curr, item) => {
-        if (item.pay_type === 2) {
+        if (Number(item.pay_type) === 2) {
           curr += Number(item.amount);
           return curr;
         }
