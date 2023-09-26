@@ -251,7 +251,7 @@ class BillController extends Controller {
       const _data = result.filter(item => (Number(item.date) > start && Number(item.date) < end));
       // 总支出
       const total_expense = _data.reduce((curr, item) => {
-        if (item.pay_type === 1) {
+        if (item.pay_type == 1) {
           curr += Number(item.amount);
           return curr;
         }
@@ -259,7 +259,7 @@ class BillController extends Controller {
       }, 0);
       // 总收入
       const total_income = _data.reduce((curr, item) => {
-        if (item.pay_type === 2) {
+        if (item.pay_type == 2) {
           curr += Number(item.amount);
           return curr;
         }
@@ -267,7 +267,7 @@ class BillController extends Controller {
       }, 0);
       // 收支构成
       let total_data = _data.reduce((arr, cur) => {
-        const index = arr.findIndex(item => item.type_id === cur.type_id);
+        const index = arr.findIndex(item => item.type_id == cur.type_id);
         if (index === -1) {
           arr.push({
             type_id: cur.type_id,
