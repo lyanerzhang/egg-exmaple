@@ -266,24 +266,20 @@ class BillController extends Controller {
         return curr;
       }, 0);
       // 收支构成
-      let total_data = _data.reduce((arr, cur) => {
-        const index = arr.findIndex(item => item.type_id == cur.type_id);
+      const total_data = [];
+      _data.forEach(item => {
+        const index = total_data.findIndex(i => i.type_id === item.type_id);
         if (index === -1) {
-          arr.push({
-            type_id: cur.type_id,
-            type_name: cur.type_name,
-            pay_type: cur.pay_type,
-            amount: Number(cur.amount),
+          total_data.push({
+            type_id: item.type_id,
+            type_name: item.type_name,
+            pay_type: item.pay_type,
+            amount: Number(item.amount),
+            number: Number(item.amount),
           });
+        } else {
+          total_data[index].number = Number(Number(item.amount) + Number(total_data[index].number)).toFixed(2);
         }
-        if (index > -1) {
-          arr[index].number += Number(cur.amount);
-        }
-        return arr;
-      }, []);
-      total_data = total_data.map(item => {
-        item.number = Number(Number(item.number).toFixed(2));
-        return item;
       });
       ctx.body = {
         code: 200,
