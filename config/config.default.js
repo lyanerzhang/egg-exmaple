@@ -58,7 +58,7 @@ module.exports = appInfo => {
       host: '127.0.0.1',
       port: '3306',
       user: 'root',
-      password: '123456789',
+      password: '12345678',
       database: 'ly_data',
     },
     app: true,

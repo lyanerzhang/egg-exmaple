@@ -1,5 +1,5 @@
 const Controller = require('egg').Controller;
-
+const wxConfig = require('../config/wxConfig');
 const defaultAvatar = 'http://s.yezgea02.com/1615973940679/WeChat77d6d2ac093e247c361f0b8a7aeb6c2a.png';
 
 class UserController extends Controller {
@@ -87,6 +87,23 @@ class UserController extends Controller {
         token,
       },
     };
+  }
+  async wxLogin() {
+    const { ctx } = this;
+    const { code } = ctx.request.body;
+    const urlStr = 'https://api.weixin.qq.com/sns/jscode2session';
+    const data = {
+      appid: wxConfig.appid, // 小程序 appId
+      secret: wxConfig.appSecret, // 小程序 appSecret
+      js_code: code, // 登录时获取的 code
+      grant_type: 'authorization_code', // 授权类型，此处只需填写 authorization_code
+    };
+    const result = await this.ctx.curl(urlStr, {
+      data,
+      dataType: 'json',
+    });
+    this.ctx.body = result.data;
+    console.log('请求wxlogin', result);
   }
   async test() {
     const { ctx, app } = this;
