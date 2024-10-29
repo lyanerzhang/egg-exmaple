@@ -1,5 +1,7 @@
+
+'use strict';
 const Controller = require('egg').Controller;
-const wxConfig = require('../config/wxConfig');
+const wxConfig = require('../utils/wxConfig');
 const defaultAvatar = 'http://s.yezgea02.com/1615973940679/WeChat77d6d2ac093e247c361f0b8a7aeb6c2a.png';
 
 class UserController extends Controller {
@@ -89,6 +91,7 @@ class UserController extends Controller {
     };
   }
   async wxLogin() {
+    console.log('请求wxlogin');
     const { ctx } = this;
     const { code } = ctx.request.body;
     const urlStr = 'https://api.weixin.qq.com/sns/jscode2session';

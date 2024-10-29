@@ -1,3 +1,4 @@
+'use strict';
 const Service = require('egg').Service;
 class UserService extends Service {
   // 通过用户名获取用户信息

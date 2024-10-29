@@ -1,6 +1,6 @@
-/* eslint valid-jsdoc: "off" */
 
 'use strict';
+/* eslint valid-jsdoc: "off" */
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
